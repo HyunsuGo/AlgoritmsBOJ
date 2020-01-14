@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main { //풀이시간 53분
+public class Main { // 풀이시간 53분
 	static int[][] map;
 	static int[] dice = new int[6];
 	static int[] dx = {0, 0, 0, -1, 1};
