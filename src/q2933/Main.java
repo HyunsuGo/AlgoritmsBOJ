@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main { //풀이시간 100분
+public class Main { //풀이시간 120분
 	static char[][] map;
 	static int[][] check;
 	
@@ -99,7 +99,8 @@ Outter:		for(int k=1; k<index; k++) {
 						}
 					}
 				}
-				System.out.println("index " + k + " : " + flag);
+//				System.out.println("index " + k + " : " + flag);
+//				showCheck();
 				if(flag) { //true면 내림
 					for(int p=0; p<map[0].length; p++) if(check[r-1][p]==k) {continue Outter;} //아래쪽에 있으면 이동x
 					int tmp = Integer.MAX_VALUE;
@@ -107,21 +108,9 @@ Outter:		for(int k=1; k<index; k++) {
 						int count=0;
 						for(int p=map.length-1; p>=0; p--) {
 							if(check[p][q]==0) count++;
-							if(check[p][q]==k) {
-								for(int z=p; z<map.length; z++) {
-									for(int z2=0; z2<4; z2++) {
-										int ny = p + dy[z2];
-										int nx = q + dx[z2];
-										if(ny<0 || ny>=check.length || nx<0 || nx==check[0].length) continue;
-										if(check[ny][nx]!=k && check[ny][nx]!=0) break;
-										
-									}
-									tmp = Math.min(tmp, count); //이동할 양 계산
-								}
-								break;
-							}
+							else if(check[p][q]!=k) count=0;
+							if(check[p][q]==k) tmp = Math.min(tmp, count); //이동할 양 계산
 						}
-						
 					}
 					
 					for(int p=check.length-1; p>=0; p--) {
@@ -134,11 +123,10 @@ Outter:		for(int k=1; k<index; k++) {
 							}
 						}
 					}
-					System.out.println(tmp);
+//					System.out.println(tmp);
 				}
-				
 			}
-			showCheck();
+//			showCheck();
 		}
 		show();
 	}
