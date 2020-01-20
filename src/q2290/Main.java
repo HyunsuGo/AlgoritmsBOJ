@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-public class Main { //풀이시간 45분
+public class Main { //풀이시간 45분    (문제 출력 잘보고 형식맞춰서 출력하기!)
 	public static void main(String[] args) throws Exception {
 //		File file = new File("src/q2290/test.txt");
 //		FileInputStream fis = new FileInputStream(file);
