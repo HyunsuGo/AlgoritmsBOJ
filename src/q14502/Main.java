@@ -1,9 +1,13 @@
 package q14502;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.StringTokenizer;
@@ -13,6 +17,7 @@ public class Main { //풀이시간 68분
 	static int[] dy = {1, -1, 0, 0};
 	static int[] dx = {0, 0, -1, 1};
 	static int ans = Integer.MIN_VALUE;
+	static BufferedWriter bw;
 	
 	static ArrayList<Pair> viruses = new ArrayList<>();
 	
@@ -45,7 +50,7 @@ public class Main { //풀이시간 68분
 		}
 	}
 	
-	static void buildWall(int y, int x, int index) {
+	static void buildWall(int y, int x, int index) throws IOException {
 		if(index==3) {
 			int[][] tMap = new int[map.length][map[0].length];
 			for(int i=0; i<map.length; i++) tMap[i]=Arrays.copyOf(map[i], map[i].length);
@@ -58,13 +63,16 @@ public class Main { //풀이시간 68분
 					go(ny, nx, tMap);
 				}
 			}
-			for(int i=0; i<tMap.length; i++) {
-				for(int j=0; j<tMap[0].length; j++) {
-					System.out.print(tMap[i][j]+" ");
-				}
-				System.out.println();
-			}
-			System.out.println();
+//			for(int i=0; i<tMap.length; i++) {
+//				for(int j=0; j<tMap[0].length; j++) {
+//					System.out.print(tMap[i][j]+" ");
+//					bw.append(tMap[i][j]+" ");
+//				}
+//				System.out.println();
+//				bw.append("\n");
+//			}
+//			System.out.println();
+//			bw.append("\n");
 			int temp = calculate(tMap);
 			if(ans<temp) ans = temp;
 			return;
@@ -72,14 +80,10 @@ public class Main { //풀이시간 68분
 		
 		if(map[y][x]!=0) return;  //0이 아니면 벽을 세울수 없으므로
 		map[y][x]=1; //벽세우고
-		int sy=y, sx=x;
-		if(sx==map[0].length-1 && sy<map.length-1) {
-			sx=0; sy++;
-		} else if(sx==map[0].length-1 && sy==map.length-1) return;
-		else sx++;
-		for(int i=sy; i<map.length; i++) {
-			for(int j=sx; j<map[0].length; j++) {
-				buildWall(i, j, index+1); //다음벽으로 진행
+		
+		for(int i=y; i<map.length; i++) {
+			for (int j=0; j<map[0].length; j++) {
+				buildWall(i, j, index+1);
 			}
 		}
 		map[y][x]=0; //벽 안세우고
@@ -88,10 +92,13 @@ public class Main { //풀이시간 68분
 	}
 	
 	public static void main(String[] args) throws Exception {
-		File file = new File ("src/q14502/test.txt");
-		FileInputStream fis = new FileInputStream(file);
-		BufferedReader br = new BufferedReader(new InputStreamReader(fis));
-//		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//		File file = new File ("src/q14502/test.txt");
+//		FileInputStream fis = new FileInputStream(file);
+//		BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//		File outFile = new File ("src/q14502/output.txt");
+//		FileOutputStream fos = new FileOutputStream(outFile);
+//		bw = new BufferedWriter(new OutputStreamWriter(fos));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		int n = Integer.parseInt(st.nextToken());
 		int m = Integer.parseInt(st.nextToken());
@@ -111,6 +118,6 @@ public class Main { //풀이시간 68분
 			}
 		}
 		System.out.println(ans);
-		
+//		fos.close();
 	}
 }
