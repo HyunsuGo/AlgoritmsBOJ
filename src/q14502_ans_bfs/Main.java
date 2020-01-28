@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-class Pair {
+class Pair { //bfs Ç®ÀÌ
 	int x, y;
 	Pair (int x, int y) {
 		this.x=x;
