@@ -78,8 +78,8 @@ public class Main {
 					if(b[i][j]==0) cnt++;
 				}
 			}
-			System.out.println("cnt : " + cnt);
-			show(b);
+//			System.out.println("cnt : " + cnt);
+//			show(b);
 			return cnt;
 		}
 		int ans = 100;
